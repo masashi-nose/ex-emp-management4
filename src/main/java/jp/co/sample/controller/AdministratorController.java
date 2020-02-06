@@ -74,6 +74,7 @@ public class AdministratorController {
 	}
 
 	/**
+	 * ログイン画面へ遷移します.
 	 * 
 	 * @param form  リクエストパラメータ
 	 * @param model リクエストスコープ作成
@@ -93,5 +94,18 @@ public class AdministratorController {
 
 		return "forward:/employee/showList";
 	}
-
+	
+	/**
+	 * ログイン画面にリダイレクトします.
+	 * 
+	 * @return ログイン画面
+	 */
+	@RequestMapping("/logout")
+	public String logout() {
+		session.invalidate();
+		return "redirect:/";
+	}
+	
+	
+	
 }

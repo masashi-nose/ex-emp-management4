@@ -33,6 +33,8 @@ public class EmployeeService {
 	}
 
 	/**
+	 * 従業員を１件検索しデータ表示.
+	 * 
 	 * @param id 従業員ID
 	 * @return 従業員情報
 	 */
@@ -40,6 +42,15 @@ public class EmployeeService {
 		Employee employee = employeeRepository.load(id);
 
 		return employee;
+	}
+
+	/**
+	 * 扶養人数の情報を更新.
+	 * 
+	 * @param employee　従業員情報
+	 */
+	public void update(Employee employee) {
+		employeeRepository.update(employee);
 	}
 
 }

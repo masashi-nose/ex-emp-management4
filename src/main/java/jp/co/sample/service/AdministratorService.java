@@ -20,7 +20,7 @@ public class AdministratorService {
 	private AdministratorRepository administratorRepository;
 
 	/**
-	 * 管理者テーブルに登録するメソッド
+	 * 管理者テーブルに登録するメソッド.
 	 * 
 	 * @param administrator 管理者情報
 	 */
@@ -29,7 +29,7 @@ public class AdministratorService {
 	}
 
 	/**
-	 * 入力されたメールアドレスとパスワードから管理者を検索するメソッド
+	 * 入力されたメールアドレスとパスワードから管理者を検索するメソッド.
 	 * 
 	 * @param mailAddress メールアドレス
 	 * @param password    パスワード

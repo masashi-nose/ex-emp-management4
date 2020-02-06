@@ -13,6 +13,7 @@ import jp.co.sample.domain.Employee;
 
 /**
  * employeesテーブルを操作するリポジトリ.
+ * 
  * @author masashi.nose
  *
  */
@@ -40,7 +41,9 @@ public class EmployeeRepository {
 	};
 
 	/**
-	 * @return	従業員リスト
+	 * DBから従業員情報を全件検索します.
+	 * 
+	 * @return 従業員リスト
 	 */
 	public List<Employee> findAll() {
 		String findAllSql = "SELECT id, name, image, gender, hire_date, mail_address, zip_code, address, telephone, salary, characteristics, dependents_count from employees";
@@ -52,8 +55,10 @@ public class EmployeeRepository {
 	}
 
 	/**
+	 * DBから従業員情報を1件検索します.
+	 * 
 	 * @param id 従業員ID
-	 * @return	従業員情報
+	 * @return 従業員情報
 	 */
 	public Employee load(Integer id) {
 		String loadSql = "select id, name, image, gender, hire_date, mail_address, zip_code, address, telephone, salary, characteristics, dependents_count from employees WHERE id = :id";
@@ -64,17 +69,17 @@ public class EmployeeRepository {
 
 		return employee;
 	}
-	
-	
 
 	/**
-	 * @param employee
+	 * DBの従業員情報のうち、扶養人数を更新します.
+	 * 
+	 * @param employee 従業員情報
 	 */
 	public void update(Employee employee) {
-		String updateSql = "UPDATE employees SET dependents_count = :dependentsCount";
+		String updateSql = "UPDATE employees SET dependents_count = :dependentsCount WHERE id = :id";
 
-		SqlParameterSource param = new MapSqlParameterSource().addValue("dependent_count",
-				employee.getDependentsCount());
+		SqlParameterSource param = new MapSqlParameterSource().addValue("dependentsCount",
+				employee.getDependentsCount()).addValue("id", employee.getId());
 
 		template.update(updateSql, param);
 
