@@ -1,5 +1,7 @@
 package jp.co.sample.repository;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -10,6 +12,10 @@ import org.springframework.stereotype.Repository;
 
 import jp.co.sample.domain.Administrator;
 
+/**
+ * @author masashi.nose administratorsテーブルを操作するリポジトリ
+ *
+ */
 @Repository
 public class AdministratorRepository {
 
@@ -25,8 +31,13 @@ public class AdministratorRepository {
 		return administrator;
 	};
 
+	/**
+	 * 管理者テーブルに登録するメソッド
+	 * 
+	 * @param administrator 管理者情報
+	 */
 	public void insert(Administrator administrator) {
-		String insertSql = "INSERT INTO administrators (id, name, mail_address, password) VALUES (id = :id, name = :name, mail_address = :mailAddress, password = :password)";
+		String insertSql = "INSERT INTO administrators (name, mail_address, password) VALUES (:name, :mailAddress, :password)";
 
 		SqlParameterSource param = new BeanPropertySqlParameterSource(administrator);
 
@@ -34,15 +45,26 @@ public class AdministratorRepository {
 
 	}
 
+	/**
+	 * 入力されたメールアドレスとパスワードから管理者を検索するメソッド
+	 * 
+	 * @param mailAddress メールアドレス
+	 * @param password    パスワード
+	 * @return administrator 管理者情報
+	 */
 	public Administrator findByMailAddressPassword(String mailAddress, String password) {
-		String findByMailAddressSql = "select id, name, mail_address, password from administrators WHERE mail_address = :mail_address, password = :password";
+		String findByMailAddressPasswordSql = "select id, name, mail_address, password from administrators WHERE mail_address = :mailAddress AND password = :password";
 
-		SqlParameterSource param = new MapSqlParameterSource().addValue("mail_address", mailAddress)
-				.addValue("password", password);
+		SqlParameterSource param = new MapSqlParameterSource().addValue("mailAddress", mailAddress).addValue("password",
+				password);
 
-		Administrator administrator = template.queryForObject(findByMailAddressSql, param, ADMINISTRATOR_ROW_MAPPER);
+		List<Administrator> administratorList = template.query(findByMailAddressPasswordSql, param,
+				ADMINISTRATOR_ROW_MAPPER);
 
-		return administrator;
+		if (administratorList.size() == 0) {
+			return null;
+		}
+		return administratorList.get(0);
 
 	}
 }

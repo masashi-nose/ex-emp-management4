@@ -1,39 +1,17 @@
-package jp.co.sample.domain;
+package jp.co.sample.form;
 
 /**
- * 管理者を表すドメイン.
- * 
+ * 入力画面からからリクエストパラメータを受け取るフォーム.
  * @author masashi.nose
  */
-public class Administrator {
-	/** ID */
-	private Integer id;
+public class InsertAdministratorForm {
+
 	/** 名前 */
 	private String name;
 	/** メールアドレス */
 	private String mailAddress;
 	/** パスワード */
 	private String password;
-
-	public Administrator(Integer id, String name, String mailAddress, String password) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.mailAddress = mailAddress;
-		this.password = password;
-	}
-
-	public Administrator() {
-
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
@@ -61,7 +39,7 @@ public class Administrator {
 
 	@Override
 	public String toString() {
-		return "Administrator [id=" + id + ", name=" + name + ", mailAddress=" + mailAddress + ", password=" + password
+		return "InsertAdministratorForm [name=" + name + ", mailAddress=" + mailAddress + ", password=" + password
 				+ "]";
 	}
 
