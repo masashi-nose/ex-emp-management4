@@ -1,9 +1,11 @@
 package jp.co.sample.domain;
 
 /**
- * 管理者を表すドメイン.
+ * 
+ * administratorsテーブルのカラム情報を持つドメイン.
  * 
  * @author masashi.nose
+ *
  */
 public class Administrator {
 	/** ID */
@@ -15,6 +17,12 @@ public class Administrator {
 	/** パスワード */
 	private String password;
 
+	@Override
+	public String toString() {
+		return "Administrator [id=" + id + ", name=" + name + ", mailAddress=" + mailAddress + ", password=" + password
+				+ "]";
+	}
+
 	public Administrator(Integer id, String name, String mailAddress, String password) {
 		super();
 		this.id = id;
@@ -24,7 +32,7 @@ public class Administrator {
 	}
 
 	public Administrator() {
-
+		super();
 	}
 
 	public Integer getId() {
@@ -57,12 +65,6 @@ public class Administrator {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "Administrator [id=" + id + ", name=" + name + ", mailAddress=" + mailAddress + ", password=" + password
-				+ "]";
 	}
 
 }
