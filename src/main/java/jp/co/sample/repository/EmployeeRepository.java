@@ -48,7 +48,7 @@ public class EmployeeRepository {
 	 * 
 	 * @return 従業員情報オブジェクトが詰まったリスト.
 	 */
-	public List<Employee> employeeList() {
+	public List<Employee> findAll() {
 		StringBuilder sql = new StringBuilder();
 		sql.append(
 				"SELECT id, name, image, gender, hire_date, mail_address, zipcode, address, telephone, salary, characteristics, dependents_count ");
