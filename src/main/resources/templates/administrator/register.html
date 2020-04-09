@@ -2,7 +2,15 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>従業員管理システム</title>
+<link rel="stylesheet" href="../../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" >
+<link rel="stylesheet" href="../../static/css/style.css" th:href="@{/css/style.css}" >
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 <body>
 
@@ -22,7 +30,7 @@
 				
 <!-- ここから上を編集する必要はありません -->
 
-					<form method="post" action="login.html">
+					<form method="post" action="login.html" th:action="@{/register}" th:object="${administratorForm}">
 						<fieldset>
 							<legend>管理者登録<br>(システムにログインできる管理者を登録します)</legend>
 							<!-- 氏名 -->
@@ -32,10 +40,8 @@
 										<label for="name">
 											氏名:
 										</label>
-										<label class="error-messages">
-											氏名を入力してください
-										</label>
-										<input type="text" name="name" id="name" class="form-control" placeholder="山田太郎">
+										<label class="error-messages" th:errors="*{name}"></label>
+										<input type="text" name="name" id="name" class="form-control" placeholder="山田太郎" th:field=*{name}>
 									</div>
 								</div>
 							</div>
@@ -46,10 +52,8 @@
 										<label for="mailAddress">
 											メールアドレス:
 										</label>
-										<label  class="error-messages">
-											メールアドレスを入力してください
-										</label>
-										<input type="text" name="mailAddress" id="mailAddress" class="form-control" placeholder="yamada@mail.com">
+										<label  class="error-messages" th:errors="*{mailAddress}"></label>
+										<input type="text" name="mailAddress" id="mailAddress" class="form-control" placeholder="yamada@mail.com" th:field=*{mailAddress}>
 									</div>
 								</div>
 							</div>
@@ -60,10 +64,8 @@
 										<label for="passwaord">
 											パスワード:
 										</label>
-										<label class="error-messages">
-											パスワードを入力してください
-										</label>
-										<input type="password" name="password" id="password" class="form-control" placeholder="password">
+										<label class="error-messages" th:errors="*{password}"></label>
+										<input type="password" name="password" id="password" class="form-control" placeholder="password" th:field=*{password}>
 									</div>
 								</div>
 							</div>

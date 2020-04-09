@@ -48,6 +48,15 @@ public class AdministratorRepository {
 		insert = withTableName.usingGeneratedKeyColumns("id");
 	}
 
+	public void register(Administrator administrator) {
+		String sql = "INSERT INTO administrators (name, mail_address, password) VALUES (:name, :mailAddress, :password)";
+		SqlParameterSource param = new MapSqlParameterSource().addValue("name", administrator.getName())
+				.addValue("mailAddress", administrator.getMailAddress())
+				.addValue("password", administrator.getPassword());
+		template.update(sql, param);
+
+	}
+
 	/**
 	 * 
 	 * administratorsテーブルに管理者情報をインサートします.
@@ -64,6 +73,8 @@ public class AdministratorRepository {
 			System.out.println(key + "が割り当てられました。");
 
 		}
+
+		System.out.println(administrator);
 		return administrator;
 	}
 
