@@ -32,6 +32,7 @@ public class AdministratorService {
 
 	/**
 	 * メールアドレスとパスワードから管理者を検索します.
+	 * (ログイン機能)
 	 * 
 	 * @param mailAddress メールアドレス
 	 * @param password    パスワード
